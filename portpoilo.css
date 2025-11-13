@@ -1,0 +1,1003 @@
+/* ===========================================
+   Park Siun Portfolio 2025 - CSS
+   =========================================== */
+
+/* KoPub Light 폰트 로드 */
+@font-face {
+    font-family: 'KoPub Light';
+    src: local('KoPub Light'),
+         local('KoPubLight'),
+         local('KoPub-Light'),
+         url('웹컨텐츠용/KoPub Light.ttf') format('truetype'),
+         url('웹컨텐츠용/KoPubLight.ttf') format('truetype'),
+         url('웹컨텐츠용/KoPub-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'KoPub Light', sans-serif;
+}
+
+body {
+    font-family: 'KoPub Light', sans-serif;
+    background-color: #F5F5F5;
+    /* Unified continuous background for sections 2–4 */
+    background-image: url("웹컨텐츠용/side_bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    overflow-x: hidden;
+    cursor: none; /* 기본 커서 숨기기 */
+}
+
+/* 커스텀 커서 */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference; /* 반전 색상 효과 - 원 안쪽이 배경색 반전 */
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+}
+
+.custom-cursor.clicked {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+/* ===========================================
+   네비게이션
+   =========================================== */
+.navigation {
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.nav-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+    width: 12px;
+    height: 20px;
+    border-radius: 6px;
+    background-color: #000;
+}
+
+/* ===========================================
+   섹션 공통 스타일
+   =========================================== */
+.section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 60px 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.section-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===========================================
+   스크롤 애니메이션 초기 상태
+   =========================================== */
+.scroll-animate {
+    opacity: 0;
+}
+
+/* ===========================================
+   첫 번째 섹션 - 헤더
+   =========================================== */
+.header-section {
+    position: relative;
+    overflow: hidden;
+    background-image: url("웹컨텐츠용/main_bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+.year-image {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 20px;
+    transform: rotate(-5deg) translateY(-50px);
+    display: inline-block;
+    opacity: 0;
+    margin-bottom: 400px;
+}
+
+.main-title-image {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    z-index: 2;
+    opacity: 0;
+}
+
+.title-line-image {
+    max-width: 60%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: rotate(-5deg) translate(-50%, -50%) scale(0.9);
+    z-index: 1;
+    opacity: 0;
+}
+
+.big-star-image {
+    max-width: auto;
+    height: auto;
+    position: absolute;
+    top: 100%;
+    left: 58%;
+    z-index: 3;
+    opacity: 0;
+}
+
+.big-star-image.active {
+    opacity: 1;
+}
+
+.big-star-image.auto-motion {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translate(-50%, calc(-50% - 240px)); }
+    50% { transform: translate(-50%, calc(-50% - 260px)); }
+    100% { transform: translate(-50%, calc(-50% - 240px)); }
+}
+
+/* 섹션1 하단 좌우 배치 이미지 (원본 크기) */
+.section1-left-bottom,
+.section1-right-bottom {
+    position: absolute;
+    bottom: 0 !important;
+    height: auto;
+    z-index: 20;
+    display: block;
+    opacity: 0;
+}
+
+.section1-left-bottom {
+    left: 0 !important;
+    margin: 0 0 100px 100px;
+    transform: translateX(-50px);
+}
+
+.section1-right-bottom {
+    right: 0 !important;
+    margin: 0 100px 100px 0;
+    transform: translateX(50px);
+}
+
+/* ===========================================
+   두 번째 섹션 - 소개
+   =========================================== */
+.intro-section {
+    position: relative;
+    overflow: visible;
+}
+
+.bg-circle1 {
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #999;
+    position: absolute;
+    left: -150px;
+    top: 30%;
+    transform: translateY(-50%) scale(0.8);
+    z-index: 0;
+    opacity: 0;
+}
+
+.bg-circle2 {
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #999;
+    position: absolute;
+    right: -250px;
+    top: 50%;
+    transform: translateY(-0%) scale(0.8);
+    z-index: 0;
+    opacity: 0;
+    /* 마스크로 하단 50% 지점부터 페이드아웃 */
+    mask-image: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 60%, 
+        rgba(0,0,0,0) 70%);
+    -webkit-mask-image: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 60%, 
+        rgba(0,0,0,0) 70%);
+}
+
+/* 섹션 3을 위한 좌우 반전 도형 */
+.bg-circle3 {
+    width: 1000px;
+    height: 1000px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #999;
+    position: absolute;
+    left: -150px;
+    top: 45%;
+    transform: translateY(-0%) scale(0.8);
+    z-index: 0;
+    opacity: 0;
+    /* 마스크로 하단 60% 지점부터 페이드아웃 */
+    mask-image: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 60%, 
+        rgba(0,0,0,0) 80%);
+    -webkit-mask-image: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 60%, 
+        rgba(0,0,0,0) 80%);
+}
+
+.left-text-image, .right-text-image {
+    position: absolute;
+    top: 50%;
+    max-width: auto;
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+}
+
+.left-text-image {
+    left: -100px;
+    transform: translateY(-40%) translateX(-50px);
+}
+
+.right-text-image {
+    right: -100px;
+    transform: translateY(-20%) translateX(50px);
+}
+
+.intro-content {
+    max-width: 1760px;
+    margin: -30px 0 100px 160px;
+    z-index: 2; 
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.designer {
+    font-size: 20px;
+    line-height: 2;
+    text-align: left;
+    color: #232323;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.description {
+    font-size: 25px;
+    line-height: 2.5;
+    margin-bottom: 40px;
+    color: #666;
+    margin: 0 0 100px 10px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.chapter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: end;
+    margin: 400px 350px 0 0;
+}
+
+.chapter1 {
+    font-size: 20px;
+    color: #333;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.chapter2 {
+    font-size: 20px;
+    color: #333 ;
+    font-weight: 300;
+    margin: 0 50px 0 0;
+    opacity: 0;
+    transform: translateX(30px);
+}
+/* ===========================================
+   세 번째 섹션 - 스킬
+   =========================================== */
+.skills-section {
+    padding: 80px 0;
+}
+
+.skills-title-image {
+    max-width: auto;
+    height: auto;
+    display: block;
+    margin: 150px 0 80px 100px;
+    justify-self: end;
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 40px;
+    max-width: 1720px;
+    margin: 0 20px 0 0;
+    justify-self: end;
+    opacity: 0;
+}
+
+.skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+}
+
+.skill-icon-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.skill-bar, .skill-bar1 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.skill-fill, .skill-empty {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.skill-fill.ps-fill { background-color: #001E36; }
+.skill-fill.ai-fill { background-color: #330000; }
+.skill-fill.id-fill { background-color: #49021F; }
+.skill-fill.pro-fill { background-color: #232323; }
+.skill-fill.pr-fill { background-color: #00005B; }
+.skill-fill.fi-fill { background-color: #232323; }
+
+.skill-empty {
+    background-color: #fffffe;
+}
+
+.contact-info {
+    max-width: 1720px;
+    margin: 180px 0 0 -100px;
+    text-align: start;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* 박시은과 Park siun 이미지를 나란히 배치 */
+.name-korean-image, .name-english-image {
+    height: auto;
+    margin: 0 0 50px 0;
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.name-korean-image {
+    margin-right: 115px;
+}
+
+.education-image, .contact-details-image {
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 20px 0;
+    display: block;
+    opacity: 0;
+    transform: translateY(20px);
+}
+/* ===========================================
+   네 번째 섹션 - 워크
+   =========================================== */
+.works-section {
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.works-circle {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.works-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 125px;
+    perspective: 1000px;
+    position: relative;
+    width: 100%;
+    overflow: visible;
+    opacity: 0;
+}
+
+.work-card {
+    border-radius: 8px;
+    position: relative;
+    transition: transform 0.3s ease, background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: cardColorCycle 10s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* hover 시 애니메이션 일시정지 */
+.works-grid:hover .work-card {
+    animation-play-state: paused;
+}
+
+/* 카드 색상 순환 애니메이션: 1->2->3->4->5->1 (각 2초씩) */
+@keyframes cardColorCycle {
+    0%, 18% {
+        background-color: #360000; /* card1 색상 */
+    }
+    20%, 38% {
+        background-color: #755000; /* card2 색상 */
+    }
+    40%, 58% {
+        background-color: #555; /* card3 색상 */
+    }
+    60%, 78% {
+        background-color: #00202c; /* card4 색상 */
+    }
+    80%, 98% {
+        background-color: #3b006b; /* card5 색상 */
+    }
+    100% {
+        background-color: #360000; /* card1 색상으로 복귀 */
+    }
+}
+
+/* 왼쪽 끝 카드 - 30도 회전, 투명도 20% */
+.card1 {
+    width: 350px;
+    height: 500px;
+    background-color: #360000;
+    transform: rotate(-30deg) translateY(320px) translateX(-100px);
+    opacity: 0;
+    position: absolute;
+    left: -300px;
+    cursor: pointer;
+    animation: card1ColorCycle 10s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* card1 색상 순환: 0-2초에 card1 색상, 나머지는 다른 색상 */
+@keyframes card1ColorCycle {
+    0%, 18% {
+        background-color: #360000; /* card1 */
+    }
+    20%, 38% {
+        background-color: #755000; /* card2 */
+    }
+    40%, 58% {
+        background-color: #555; /* card3 */
+    }
+    60%, 78% {
+        background-color: #00202c; /* card4 */
+    }
+    80%, 98% {
+        background-color: #3b006b; /* card5 */
+    }
+    100% {
+        background-color: #360000; /* card1 */
+    }
+}
+
+.card2 {
+    width: 350px;
+    height: 500px;
+    background-color: #755000;
+    transform: rotate(-15deg) translateY(100px) translateX(-50px);
+    opacity: 0;
+    cursor: pointer;
+    animation: card2ColorCycle 10s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* card2 색상 순환: 2-4초에 card2 색상, 나머지는 다른 색상 */
+@keyframes card2ColorCycle {
+    0%, 18% {
+        background-color: #3b006b; /* card5 */
+    }
+    20%, 38% {
+        background-color: #755000; /* card2 */
+    }
+    40%, 58% {
+        background-color: #555; /* card3 */
+    }
+    60%, 78% {
+        background-color: #00202c; /* card4 */
+    }
+    80%, 98% {
+        background-color: #360000; /* card1 */
+    }
+    100% {
+        background-color: #755000; /* card2 */
+    }
+}
+
+.card3 {
+    width: 400px;
+    height: 600px;
+    background-image: url("웹컨텐츠용/hand in music.png");
+    background-position: center;
+    background-size: cover;
+    background-color: #555;
+    transform: translateY(-10px) scale(0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    animation: card3ColorCycle 10s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* card3 색상 순환: 4-6초에 card3 색상, 나머지는 다른 색상 */
+@keyframes card3ColorCycle {
+    0%, 18% {
+        background-color: #00202c; /* card4 */
+    }
+    20%, 38% {
+        background-color: #3b006b; /* card5 */
+    }
+    40%, 58% {
+        background-color: #555; /* card3 */
+    }
+    60%, 78% {
+        background-color: #360000; /* card1 */
+    }
+    80%, 98% {
+        background-color: #755000; /* card2 */
+    }
+    100% {
+        background-color: #555; /* card3 */
+    }
+}
+
+.card4 {
+    width: 350px;
+    height: 500px;
+    background-color: #00202c;
+    transform: rotate(15deg) translateY(100px) translateX(50px);
+    opacity: 0;
+    cursor: pointer;
+    animation: card4ColorCycle 10s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* card4 색상 순환: 6-8초에 card4 색상, 나머지는 다른 색상 */
+@keyframes card4ColorCycle {
+    0%, 18% {
+        background-color: #555; /* card3 */
+    }
+    20%, 38% {
+        background-color: #360000; /* card1 */
+    }
+    40%, 58% {
+        background-color: #755000; /* card2 */
+    }
+    60%, 78% {
+        background-color: #00202c; /* card4 */
+    }
+    80%, 98% {
+        background-color: #3b006b; /* card5 */
+    }
+    100% {
+        background-color: #00202c; /* card4 */
+    }
+}
+
+/* 오른쪽 끝 카드 - 30도 회전, 투명도 20% */
+.card5 {
+    width: 350px;
+    height: 500px;
+    background-color: #3b006b;
+    transform: rotate(30deg) translateY(320px) translateX(100px);
+    opacity: 0;
+    position: absolute;
+    right: -300px;
+    cursor: pointer;
+    animation: card5ColorCycle 10s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* card5 색상 순환: 8-10초에 card5 색상, 나머지는 다른 색상 */
+@keyframes card5ColorCycle {
+    0%, 18% {
+        background-color: #755000; /* card2 */
+    }
+    20%, 38% {
+        background-color: #555; /* card3 */
+    }
+    40%, 58% {
+        background-color: #00202c; /* card4 */
+    }
+    60%, 78% {
+        background-color: #3b006b; /* card5 */
+    }
+    80%, 98% {
+        background-color: #360000; /* card1 */
+    }
+    100% {
+        background-color: #3b006b; /* card5 */
+    }
+}
+
+/* 섹션 4 중앙 원 - card3 기준 50px 아래 */
+.works-circle {
+    width: 3000px;
+    height: 3000px;
+    border-radius: 50%;
+    border: 2px solid #999;
+    background-color: transparent;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* card3 중심(translateY(-10px) + 높이600px/2 = 290px) + 50px = 340px 아래 */
+    transform: translateX(-50%) translateY(calc(-50% + 1850px)) scale(0.8);
+    z-index: 0;
+    opacity: 0;
+    /* 위 20%는 보이고, 20%에서 40%까지 그라데이션으로 페이드아웃 */
+    mask-image: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 5%, 
+        rgba(0,0,0,0) 10%);
+    -webkit-mask-image: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 5%, 
+        rgba(0,0,0,0) 10%);
+}
+
+/* ===========================================
+   다섯 번째 섹션
+   =========================================== */
+.section5 {
+    padding: 80px 0;
+    min-height: 50vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 섹션 5 footer 배경 - 아래에서 위로 검은색에서 투명색으로 */
+.section5-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(to top, 
+        rgb(75, 75, 75) 0%, 
+        rgba(100, 100, 100, 0.8) 30%, 
+        rgba(150, 150, 150, 0.4) 60%, 
+        rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.section {
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(
+        to bottom
+        rgba(0, 0, 0, 0) 0%
+        rgba(0, 0, 0, 1) 80%
+        rgba(0, 0, 0, 1) 100%
+    );
+}
+
+/* ===========================================
+   모달 창
+   =========================================== */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    position: relative;
+    width: 1500px;
+    height: 1000px;
+    max-width: 90vw;
+    max-height: 90vh;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: #000;
+}
+
+.modal-body {
+    width: 100%;
+    height: 100%;
+    padding: 60px 40px 40px;
+    overflow-y: auto;
+}
+
+/* ===========================================
+   반응형 디자인
+   =========================================== */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+        padding: 0 40px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .works-grid {
+        gap: 20px;
+    }
+    
+    .card1, .card2, .card3, .card4, .card5 {
+        width: 150px;
+        height: 150px;
+    }
+
+    /* Header bottom corner images scale */
+    .section1-left-bottom, .section1-right-bottom {
+        max-width: 24vw;
+        margin: 0 0 60px 60px;
+    }
+    .section1-right-bottom { margin: 0 60px 60px 0; }
+
+    .skills-title-image { padding-right: 60px; margin: 100px 0 40px auto; }
+    .skills-grid { padding-right: 80px; }
+    .contact-info { margin: 150px 0 80px 60px; }
+
+    /* 모달 반응형 */
+    .modal-content {
+        width: 90vw;
+        height: 80vh;
+    }
+
+    /* 섹션 5 footer 반응형 */
+    .section5-footer {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        right: 10px;
+    }
+    
+    .left-text-image, .right-text-image {
+        display: none;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .works-grid {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .card1, .card2, .card3, .card4, .card5 {
+        transform: none !important;
+        width: 200px;
+        height: 200px;
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+    }
+    
+    .main-title-image {
+        max-width: 90%;
+    }
+    
+    .quote-image { max-width: 90%; }
+    .bg-circle1, .bg-circle2, .bg-circle3 { display: none; }
+    .skills-title-image { padding-right: 20px; margin: 80px 0 30px auto; max-width: 300px; }
+    .skills-grid { padding-right: 20px; }
+    .contact-info { margin: 100px 0 60px 30px; }
+    .section1-left-bottom, .section1-right-bottom { max-width: 28vw; margin: 0 0 40px 40px; }
+    .section1-right-bottom { margin: 0 40px 40px 0; }
+    
+    .description {
+        font-size: 16px;
+    }
+
+    /* 모달 반응형 */
+    .modal-content {
+        width: 95vw;
+        height: 85vh;
+    }
+
+    .modal-close {
+        width: 35px;
+        height: 35px;
+        top: 15px;
+        right: 15px;
+        font-size: 20px;
+    }
+
+    .modal-body {
+        padding: 50px 20px 20px;
+    }
+
+    /* 섹션 5 footer 반응형 */
+    .section5-footer {
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-title-image {
+        max-width: 95%;
+    }
+
+    .section1-left-bottom, .section1-right-bottom {
+        max-width: 40vw;
+        margin: 0 0 24px 24px;
+    }
+    .section1-right-bottom { margin: 0 24px 24px 0; }
+    .contact-info { margin: 80px 0 40px 20px; }
+
+    /* 모달 반응형 */
+    .modal-content {
+        width: 95vw;
+        height: 90vh;
+    }
+
+    .modal-close {
+        width: 32px;
+        height: 32px;
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 40px 15px 15px;
+    }
+
+    /* 섹션 5 footer 반응형 */
+    .section5-footer {
+        height: 100px;
+    }
+}
