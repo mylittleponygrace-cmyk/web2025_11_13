@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Park Siun Portfolio 2025</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portpoilo.css">
     <!-- GSAP 라이브러리 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -20,6 +20,7 @@
         <div class="nav-dot" data-section="2"></div>
         <div class="nav-dot" data-section="3"></div>
         <div class="nav-dot" data-section="4"></div>
+        <div class="nav-dot" data-section="5"></div>
     </nav>
 
     <!-- 섹션 1: 헤더/타이틀 -->
@@ -35,7 +36,7 @@
         <img src="웹컨텐츠용/Park Siun big.png" alt="Park Siun big" class="section1-left-bottom">
         <img src="웹컨텐츠용/2025 PORTPOILO.png" alt="2025 PORTPOILO" class="section1-right-bottom">
     </section>
-<!-- <h1> dddasd</h1> -->
+
     <!-- 섹션 2: 소개/자기소개 -->
     <section class="section intro-section">
         <div class="bg-circle1"></div>
@@ -137,23 +138,21 @@
 
     <!-- 섹션 4: 웹 컨텐츠/포트폴리오 아이템 -->
     <section class="section works-section">
-        <div class="works-circle"></div>
         <div class="container">
-            <div class="works-grid">
-                <div class="work-card card1"></div>
-                <div class="work-card card2"></div>
-                <div class="work-card card3"></div>
-                <div class="work-card card4"></div>
-                <div class="work-card card5"></div>
-            </div>
-            <div class="section-footer">
-            </div>
+            <img src="웹컨텐츠용/portpoilo poster_design.png" alt="Poster Design" class="poster-design-image">
         </div>
     </section>
 
-    <!-- 섹션 5: 추가 섹션 -->
-    <section class="section section5">
-        <div class="section5-footer"></div>
+    <!-- 섹션 5: UX/UI 디자인 -->
+    <section class="section ux-ui-section">
+        <div class="container">
+            <img src="웹컨텐츠용/portpoilo ux_ui.png" alt="UX/UI Design" class="ux-ui-image">
+        </div>
+    </section>
+
+    <!-- 섹션 6: 추가 섹션 -->
+    <section class="section section6">
+        <div class="section6-footer"></div>
         <div class="container">
             <div class="section-footer">
             </div>
@@ -263,7 +262,9 @@
                         dot.classList.add('active');
                     } else if (dot.dataset.section === '3' && current === 'works-section') {
                         dot.classList.add('active');
-                    } else if (dot.dataset.section === '4' && current === 'section5') {
+                    } else if (dot.dataset.section === '4' && current === 'ux-ui-section') {
+                        dot.classList.add('active');
+                    } else if (dot.dataset.section === '5' && current === 'section6') {
                         dot.classList.add('active');
                     }
                 });
@@ -514,50 +515,31 @@
                         scrub: 1,
                     }
                 })
-                .to('.works-circle', {
+                .to('.poster-design-image', {
                     opacity: 1,
                     scale: 1,
-                    duration: 2,
-                    ease: 'power2.out'
-                }, 0)
-                .to('.works-grid', {
-                    opacity: 1,
-                    duration: 0.5,
-                    ease: 'power2.out'
-                }, 0.3)
-                .to('.card3', {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 1,
-                    ease: 'back.out(1.5)'
-                }, 0.5)
-                .to('.card2', {
-                    opacity: 0.6,
-                    x: 0,
-                    duration: 0.8,
+                    duration: 1.2,
                     ease: 'power3.out'
-                }, 0.7)
-                .to('.card4', {
-                    opacity: 0.6,
-                    x: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                }, 0.7)
-                .to('.card1', {
-                    opacity: 0.2,
-                    x: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                }, 0.9)
-                .to('.card5', {
-                    opacity: 0.2,
-                    x: 0,
-                    duration: 0.8,
-                    ease: 'power3.out'
-                }, 0.9);
+                }, 0);
 
             } else if (index === 4) {
-                // 섹션 5: 마지막 섹션
+                // 섹션 5: UX/UI 섹션
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        scrub: 1,
+                    }
+                })
+                .to('.ux-ui-image', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: 'power3.out'
+                }, 0);
+            } else if (index === 5) {
+                // 섹션 6: 마지막 섹션
                 gsap.timeline({
                     scrollTrigger: {
                         trigger: section,
@@ -566,7 +548,7 @@
                         scrub: 1,
                     }
                 })
-                .to('.section5-footer', {
+                .to('.section6-footer', {
                     opacity: 1,
                     y: 0,
                     duration: 1.5,
